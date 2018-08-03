@@ -13,7 +13,7 @@
 
     <bean id="app" class="org.example.springTut.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventlogger"/>
+        <constructor-arg ref="fileLogger"/>
         <constructor-arg ref="event"/>
     </bean>
 
@@ -24,9 +24,13 @@
         <constructor-arg ref="dateFormat"/>
     </bean>
 
+    <bean id="fileLogger" class="org.example.springTut.FileEventLogger" init-method="init">
+        <constructor-arg value="log.txt"/>
+    </bean>
+
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateInstance"/>
 
-    <bean id="eventlogger" class="org.example.springTut.ConsoleEventLogger"/>
+    <bean id="consoleLogger" class="org.example.springTut.ConsoleEventLogger"/>
 
 
 </beans>
