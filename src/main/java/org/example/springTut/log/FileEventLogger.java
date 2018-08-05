@@ -1,4 +1,4 @@
-package org.example.springTut;
+package org.example.springTut.log;
 
 import org.apache.commons.io.FileUtils;
 

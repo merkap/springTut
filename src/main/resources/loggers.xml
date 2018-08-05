@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="fileEventLogger" class="org.example.springTut.log.FileEventLogger" init-method="init">
+        <constructor-arg type="String" value="log.txt"/>
+    </bean>
+
+    <bean id="cachedFileEventLogger" class="org.example.springTut.log.CachedFileEventLogger" parent="fileEventLogger"
+          destroy-method="destroy">
+        <constructor-arg type="java.util.List">
+            <bean class="java.util.ArrayList"/>
+        </constructor-arg>
+        <constructor-arg type="int" value="3"/>
+    </bean>
+
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateInstance"/>
+
+    <bean id="consoleEventLogger" class="org.example.springTut.log.ConsoleEventLogger"/>
+
+    <bean id="combinedEventLogger" class="org.example.springTut.log.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

@@ -1,15 +1,18 @@
-package org.example.springTut;
+package org.example.springTut.log;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Event {
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
     private int id;
     private String msg;
     private Date date;
     private DateFormat df;
 
     public Event(Date date, DateFormat df) {
+        id = AUTO_ID.getAndIncrement();
         this.date = date;
         this.df = df;
     }

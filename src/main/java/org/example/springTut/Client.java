@@ -1,15 +1,16 @@
 package org.example.springTut;
 
 public class Client {
-    private String id;
+    private int id;
     private String fullName;
+    private String greeting;
 
-    public Client(String id, String fullName) {
+    public Client(int id, String fullName) {
         this.id = id;
         this.fullName = fullName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
